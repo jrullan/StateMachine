@@ -16,15 +16,15 @@ class StateMachine
 
     // When a stated is added we pass the function that represents 
     // that state logic
-    State addState(void (*functionPointer)());
+    State* addState(void (*functionPointer)());
 
     // Attributes
-    LinkedList<State> *stateList;
+    LinkedList<State*> *stateList;
     int currentState = -1;
 };
 
 StateMachine::StateMachine(){
-  stateList = new LinkedList<State>();
+  stateList = new LinkedList<State*>();
 };
 
 StateMachine::~StateMachine(){};
@@ -48,7 +48,7 @@ void StateMachine::run(){
   if(DEBUG) Serial.print("Evaluating S");
   if(DEBUG) Serial.println(currentState);
   
-  int next = stateList->get(currentState).execute();
+  int next = stateList->get(currentState)->execute();
 
   if(DEBUG) Serial.print(" returns ");
   if(DEBUG) Serial.println(next);
@@ -62,9 +62,9 @@ void StateMachine::run(){
  * Adds a state to the machine
  * It adds the state in sequential order.
  */
-State StateMachine::addState(void(*functionPointer)()){
-  State s = State();
-  s.stateLogic = functionPointer;
+State* StateMachine::addState(void(*functionPointer)()){
+  State* s = new State();
+  s->stateLogic = functionPointer;
   stateList->add(s);
   return s;
 }

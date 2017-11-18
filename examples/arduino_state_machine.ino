@@ -3,34 +3,34 @@
 const int STATE_DELAY = 500;
 
 StateMachine machine = StateMachine();
-State S0;
-State S1;
-State S2;
-State S3;
-State S4;
-State S5;
+State* S0;
+State* S1;
+State* S2;
+State* S3;
+State* S4;
+State* S5;
 
 void setup() {
   Serial.begin(115200);
   S0 = machine.addState(&state0);
-  S0.addTransition(&transitionS0S1,1);
-  S0.addTransition(&transitionS0S3,3);
+  S0->addTransition(&transitionS0S1,1);
+  S0->addTransition(&transitionS0S3,3);
   
   S1 = machine.addState(&state1);
-  S1.addTransition(&transitionS1S2,2);
+  S1->addTransition(&transitionS1S2,2);
 
   S2 = machine.addState(&state2);
-  S2.addTransition(&transitionS2S3,3);
+  S2->addTransition(&transitionS2S3,3);
   
   S3 = machine.addState(&state3);
-  S3.addTransition(&transitionS3S4,4);
+  S3->addTransition(&transitionS3S4,4);
   
   S4 = machine.addState(&state4);
-  S4.addTransition(&transitionS4S5,5);
+  S4->addTransition(&transitionS4S5,5);
   
   S5 = machine.addState(&state5);
-  S5.addTransition(&transitionS5S0,0);
-  S5.addTransition(&transitionS5S2,2);
+  S5->addTransition(&transitionS5S0,0);
+  S5->addTransition(&transitionS5S2,2);
 }
 
 void loop() {
