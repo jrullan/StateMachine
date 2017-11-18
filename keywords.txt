@@ -1,0 +1,13 @@
+StateMachine	KEYWORD1
+State	KEYWORD1
+Transition	KEYWORD1
+execute	KEYWORD2
+evalTransitions	KEYWORD2
+addTransition	KEYWORD2
+stateLogic	KEYWORD2
+transitions	KEYWORD2
+init	KEYWORD2
+run	KEYWORD2
+addState	KEYWORD2
+currentState	KEYWORD2
+stateList	KEYWORD2
