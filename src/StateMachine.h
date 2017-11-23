@@ -66,6 +66,7 @@ State* StateMachine::addState(void(*functionPointer)()){
   State* s = new State();
   s->stateLogic = functionPointer;
   stateList->add(s);
+  s->index = stateList->size()-1;
   return s;
 }
 

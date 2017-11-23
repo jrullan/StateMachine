@@ -11,3 +11,4 @@ run	KEYWORD2
 addState	KEYWORD2
 currentState	KEYWORD2
 stateList	KEYWORD2
+index	KEYWORD2

@@ -10,7 +10,7 @@ const bool DEBUG = false;
  * a function that evaluates whether or not not transition
  * from the current state and the number of the state to transition to
  */
-typedef struct transition{
+typedef struct Transition{
   bool (*conditionFunction)();
   int stateNumber;
 };
@@ -33,11 +33,12 @@ class State{
     // stateLogic is the pointer to the function
     // that represents the state logic
     void (*stateLogic)();
-    LinkedList<struct transition> *transitions;
+    LinkedList<struct Transition*> *transitions;
+	int index;
 };
 
 State::State(){
-  transitions = new LinkedList<struct transition>();
+  transitions = new LinkedList<struct Transition*>();
 };
 
 State::~State(){};
@@ -52,7 +53,7 @@ State::~State(){};
  */
 void State::addTransition(bool (*conditionFunction)(), int stateNumber){
   if(DEBUG) Serial.println("Adding a transition");
-  struct transition t = {conditionFunction,stateNumber};
+  struct Transition* t = new Transition{conditionFunction,stateNumber};
   transitions->add(t);
 }
 
@@ -74,10 +75,10 @@ int State::evalTransitions(){
     if(DEBUG) Serial.print("Transition ");
     if(DEBUG) Serial.print(i);
     if(DEBUG) Serial.print(" result = ");
-    result = transitions->get(i).conditionFunction();
+    result = transitions->get(i)->conditionFunction();
     if(result == true){
       if(DEBUG) Serial.println("true");
-      return transitions->get(i).stateNumber;
+      return transitions->get(i)->stateNumber;
     }else{
       if(DEBUG) Serial.println("false");
     }
