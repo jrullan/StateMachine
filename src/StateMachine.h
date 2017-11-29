@@ -45,13 +45,10 @@ void StateMachine::run(){
     currentState = 0;
   }
   
-  if(DEBUG) Serial.print("Evaluating S");
-  if(DEBUG) Serial.println(currentState);
-  
+  // Execute state logic and return transitioned
+  // to state number. Returns -1 if no transitioned
+  // occured.
   int next = stateList->get(currentState)->execute();
-
-  if(DEBUG) Serial.print(" returns ");
-  if(DEBUG) Serial.println(next);
   
   if(next >= 0){
     currentState = next;

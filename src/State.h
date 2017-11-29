@@ -3,8 +3,6 @@
 #ifndef _STATE_H
 #define _STATE_H
 
-const bool DEBUG = false;
-
 /*
  * Transition is a structure that holds the address of 
  * a function that evaluates whether or not not transition
@@ -52,7 +50,6 @@ State::~State(){};
  * stateNumber is the number of the state to transition to
  */
 void State::addTransition(bool (*conditionFunction)(), int stateNumber){
-  if(DEBUG) Serial.println("Adding a transition");
   struct Transition* t = new Transition{conditionFunction,stateNumber};
   transitions->add(t);
 }
@@ -67,20 +64,10 @@ int State::evalTransitions(){
   if(transitions->size() == 0) return -1;
   bool result = false;
   
-  if(DEBUG) Serial.print("Evaluating ");
-  if(DEBUG) Serial.print(transitions->size());
-  if(DEBUG) Serial.println(" transitions.");
-  
   for(int i=0;i<transitions->size();i++){
-    if(DEBUG) Serial.print("Transition ");
-    if(DEBUG) Serial.print(i);
-    if(DEBUG) Serial.print(" result = ");
     result = transitions->get(i)->conditionFunction();
     if(result == true){
-      if(DEBUG) Serial.println("true");
       return transitions->get(i)->stateNumber;
-    }else{
-      if(DEBUG) Serial.println("false");
     }
   }
   return -1;
@@ -92,9 +79,7 @@ int State::evalTransitions(){
  * returns true is returned.
  */
 int State::execute(){
-  if(DEBUG) Serial.println("Executing stateLogic()");
   stateLogic();
-  if(DEBUG) Serial.println("Executing evalTransitions()");
   return evalTransitions();
 }
 
