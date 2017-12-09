@@ -12,3 +12,5 @@ addState	KEYWORD2
 currentState	KEYWORD2
 stateList	KEYWORD2
 index	KEYWORD2
+setTransition	KEYWORD2
+executeOnce	KEYWORD2

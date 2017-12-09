@@ -24,10 +24,12 @@ class State{
     State();
     ~State();
 
+	void addTransition(bool (*c)(), State* s);
     void addTransition(bool (*c)(), int stateNumber);
     int evalTransitions();
     int execute();
-    
+    int setTransition(int index, int stateNumber);	//Can now dynamically set the transition
+	
     // stateLogic is the pointer to the function
     // that represents the state logic
     void (*stateLogic)();
@@ -40,6 +42,19 @@ State::State(){
 };
 
 State::~State(){};
+
+/*
+ * Adds a transition structure to the list of transitions
+ * for this state.
+ * Params:
+ * conditionFunction is the address of a function that will be evaluated
+ * to determine if the transition occurs
+ * state is the state to transition to
+ */
+void State::addTransition(bool (*conditionFunction)(), State* s){
+  struct Transition* t = new Transition{conditionFunction,s->index};
+  transitions->add(t);
+}
 
 /*
  * Adds a transition structure to the list of transitions
@@ -82,5 +97,15 @@ int State::execute(){
   stateLogic();
   return evalTransitions();
 }
+
+/*
+ * Method to dynamically set a transition
+ */
+int State::setTransition(int index, int stateNo){
+	if(transitions->size() == 0) return -1;
+	transitions->get(index)->stateNumber = stateNo;
+	return stateNo;
+}
+
 
 #endif
