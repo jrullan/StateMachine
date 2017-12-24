@@ -40,6 +40,7 @@ StateMachine::~StateMachine(){};
  * By design, only one state is executed in one loop() cycle.
  */
 void StateMachine::run(){
+  //Serial.println("StateMachine::run()");
   // Early exit, no states are defined
   if(stateList->size() == 0) return;
 
@@ -73,6 +74,7 @@ State* StateMachine::addState(void(*functionPointer)()){
  */
 State* StateMachine::transitionTo(State* s){
   this->currentState = s->index;
+  this->executeOnce = true;
   return s;
 }
 
@@ -83,6 +85,7 @@ State* StateMachine::transitionTo(State* s){
 int StateMachine::transitionTo(int i){
   if(i < stateList->size()){
 	this->currentState = i;
+	this->executeOnce = true;
 	return i;
   }
   return currentState;
