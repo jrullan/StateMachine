@@ -18,6 +18,7 @@ class StateMachine
     // that state logic
     State* addState(void (*functionPointer)());
 	State* transitionTo(State* s);
+	int transitionTo(int i);
 	
     // Attributes
     LinkedList<State*> *stateList;
@@ -48,14 +49,10 @@ void StateMachine::run(){
   }
   
   // Execute state logic and return transitioned
-  // to state number. Returns -1 if no transitioned
-  // occured.
+  // to state number. 
   int next = stateList->get(currentState)->execute();
-  
-  if(next >= 0){
-	executeOnce = (currentState == next)?false:true;
-    currentState = next;
-  }
+  executeOnce = (currentState == next)?false:true;
+  currentState = next;
 }
 
 /*
@@ -71,12 +68,24 @@ State* StateMachine::addState(void(*functionPointer)()){
 }
 
 /*
- * Jump to a give state
+ * Jump to a state
  * given by a pointer to that state.
  */
 State* StateMachine::transitionTo(State* s){
   this->currentState = s->index;
   return s;
+}
+
+/*
+ * Jump to a state
+ * given by a state index number.
+ */
+int StateMachine::transitionTo(int i){
+  if(i < stateList->size()){
+	this->currentState = i;
+	return i;
+  }
+  return currentState;
 }
 
 #endif
