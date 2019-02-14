@@ -57,9 +57,9 @@ void loop() {
 }
 ```
 
-## States
+### States
 
-The state logic is defined in a function that is passed as a parameter for the ``` machine.addState ``` method.
+The state logic is defined in a function that is passed as a parameter to the ``` machine.addState() ``` method.
 
 ```c++
 State* S0 = machine.addState(&state0); 
@@ -78,7 +78,7 @@ void state0(){
 
 ### Transitions
 
-Transitions are added to a specific state in the setup() function. When specifying a transition of a state you pass the name of the function that evaluates the transition and the state object you want the machine to transition to when it evaluates to true.
+Transitions are added to the states in the setup() function. When specifying a transition of a state you pass the name of the function that evaluates the transition and the state object you want the machine to transition to when it evaluates to true.
 
 ```c++
   S1->addTransition(&transitionS1S2,S2);  // S1 transition to S2
@@ -94,3 +94,5 @@ bool transitionS1S2(){
   return false;
 }
 ```
+
+Each state can have multiple transitions, and when the state is active (current state of the machine) all of its transitions are evaluated to determine the next active state. When a state has multiple transitions, the transitions are evaluated in the order they were added to the state.
