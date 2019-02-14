@@ -84,7 +84,7 @@ Transitions are added to the states in the setup() function. When specifying a t
   S1->addTransition(&transitionS1S2,S2);  // S1 transition to S2
 ```
 
-The transitions are implemented by evaluating a function that returns a bool value of true or false. If the function returns **true** then the machine will transition from the current state to the new state specified in the transition.
+The transitions are implemented by evaluating a function that returns a bool value of true or false. If the function returns **true** then the machine will transition from the current state to the state specified when the transition was added in setup().
 
 ```c++
 bool transitionS1S2(){
