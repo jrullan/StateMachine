@@ -96,3 +96,26 @@ bool transitionS1S2(){
 ```
 
 Each state can have multiple transitions, and when the state is active (current state of the machine) all of its transitions are evaluated to determine the next active state. When a state has multiple transitions, the transitions are evaluated in the order they were added to the state. The first transition to return true will determine the next active state.
+
+### Transition to any state
+
+You can also force a transition to any state by calling the method ```transitionTo(State* s)```. This method accepts either a pointer to a specific state or an int that represents the state index. The easiest way is to use the pointer. For example,
+
+```c++
+ machine.transitionTo(S4);
+```
+
+When this line is evaluated the machine will unconditionally transition to S4.
+
+### Modifying a transition target
+
+You can also dynamically modify the transition target of a defined transition by using the ```setTransition(int index, int stateNo)``` method.
+
+```c++
+  randomState = random(0,6);
+  Serial.print("Transitioning to random state ");
+  Serial.println(randomState);
+  S0->setTransition(0,randomState);
+```
+
+In this example, the first transition (0) added to S0 is assigned a random target from 0 to 5. Assuming the machine has 6 or more states, the first transition in S0 now points to a different state each time this code is executed.
