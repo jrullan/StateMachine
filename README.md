@@ -75,6 +75,9 @@ void state0(){
   }
 }
 ```
+### State Execute Once
+
+If you need to execute a portion of code within a state just once, you can use the machine attribute ```executeOnce```. This attribute is true the first time a state logic is evaluated and then becomes false until a transition to a new state occurs. In the example above, the LED is toggled once every time the machine enters state S0.  
 
 ### Transitions
 
