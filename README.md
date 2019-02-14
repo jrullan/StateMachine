@@ -19,7 +19,7 @@ Each state has transitions defined in setup(). Transitions require two parameter
 
 Transitions are evaluated by the state machine after the state logic has executed. If none of the transitions evaluate to true, then the machine stays in the current state. 
 
-## Examples
+## EXAMPLE
 
 ```c++
 #include <StateMachine.h>
@@ -56,6 +56,8 @@ void loop() {
   delay(STATE_DELAY);
 }
 ```
+
+## States
 
 The state logic is defined in a function that is passed as a parameter for the ``` machine.addState ``` method.
 
