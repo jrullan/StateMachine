@@ -1,5 +1,5 @@
 # StateMachine
-This library implements a basic State Machine. The state logic and its transition's conditions are implemented as functions in your sketch for flexibility. The machine is intended to be deterministic, meaning that you can only be in one state at the time and transitions should occur only when your transition condition functions return true. Please note that if multiple transitions are defined for a state the first one to evaluate to true is the one that modifies the current state. The 
+This library implements a basic State Machine. The state logic and its transition's conditions are implemented as functions in your sketch for flexibility. The machine is intended to be deterministic, meaning that you can only be in one state at the time and transitions should occur only when your transition condition functions return true. Please note that if multiple transitions are defined for a state the first one to evaluate to true is the one that modifies the current state.
 
 This implementation relies on LinkedList (https://github.com/ivanseidel/LinkedList) to implement the collection of states and the collection of transitions for a state.
 
@@ -95,4 +95,4 @@ bool transitionS1S2(){
 }
 ```
 
-Each state can have multiple transitions, and when the state is active (current state of the machine) all of its transitions are evaluated to determine the next active state. When a state has multiple transitions, the transitions are evaluated in the order they were added to the state.
+Each state can have multiple transitions, and when the state is active (current state of the machine) all of its transitions are evaluated to determine the next active state. When a state has multiple transitions, the transitions are evaluated in the order they were added to the state. The first transition to return true will determine the next active state.
