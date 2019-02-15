@@ -21,6 +21,8 @@ Transitions are evaluated by the state machine after the state logic has execute
 
 ## EXAMPLE
 
+![state diagram](STATEMACHINE.png)
+
 ```c++
 #include <StateMachine.h>
 
