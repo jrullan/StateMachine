@@ -8,7 +8,7 @@
  * a function that evaluates whether or not not transition
  * from the current state and the number of the state to transition to
  */
-typedef struct Transition{
+struct Transition{
   bool (*conditionFunction)();
   int stateNumber;
 };
