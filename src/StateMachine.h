@@ -50,10 +50,15 @@ void StateMachine::run(){
   }
   
   // Execute state logic and return transitioned
-  // to state number. 
+  // to state number. Remember the current state then check
+  // if it wasnt't changed in state logic. If it was, we 
+  // should ignore predefined transitions.
+  int initialState = currentState;
   int next = stateList->get(currentState)->execute();
-  executeOnce = (currentState == next)?false:true;
-  currentState = next;
+  if(initialState == currentState){
+    executeOnce = (currentState == next)?false:true;
+    currentState = next;
+  }
 }
 
 /*
