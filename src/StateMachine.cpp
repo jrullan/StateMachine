@@ -69,3 +69,7 @@ int StateMachine::transitionTo(int i){
   }
   return currentState;
 }
+
+bool StateMachine::isInState(State* s){
+  return this->stateList->get(this->currentState) == s;
+}

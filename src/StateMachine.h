@@ -19,6 +19,7 @@ class StateMachine
     State* addState(void (*functionPointer)());
     State* transitionTo(State* s);
     int transitionTo(int i);
+    bool isInState(State* s);
 	
     // Attributes
     LinkedList<State*> *stateList;
